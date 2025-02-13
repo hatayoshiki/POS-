@@ -36,6 +36,7 @@ jobs:
         with:
           name: frontend-build
           path: .next/
+          merge-multiple: true
 
       - name: Deploy to Azure Web App
         uses: azure/webapps-deploy@v2
