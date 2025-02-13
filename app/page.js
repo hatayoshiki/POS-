@@ -8,7 +8,7 @@ export default function Home() {
   const [product, setProduct] = useState(null);
   const [cart, setCart] = useState([]);
   const [quantity, setQuantity] = useState(1);
-
+  
   // 商品を検索する関数
   const fetchProduct = async () => {
     try {
