@@ -14,7 +14,10 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Install dependencies
-        run: npm install
+        env: # ビルド時に環境変数を注入
+         NEXT_PUBLIC_API_URL: ${{ secrets.NEXT_PUBLIC_API_URL }}
+         PORT:  ${{ secrets.PORT }}
+         run: npm install
 
       - name: Build Next.js project
         run: npm run build
