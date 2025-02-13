@@ -27,7 +27,6 @@ jobs:
 
       - name: Prepare deploy folder
         run: | 
-         rm -rf deploy
          mkdir -p deploy
          cp -r .next/ deploy/
          cp -r public deploy/
@@ -37,5 +36,6 @@ jobs:
 
       - name: Prepare deploy folder
         run: |
+          rm -rf deploy
           mkdir deploy
           cp -r .next/standalone/. deploy/
