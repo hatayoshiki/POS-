@@ -12,7 +12,7 @@ export default function Home() {
   // 商品を検索する関数
   const fetchProduct = async () => {
     try {
-      const response = await axios.get(`http://127.0.0.1:8000/get-product/?jan_code=${janCode}`);
+      const response = await axios.get(`http://tech0-gen8-step4-pos-app-100.azurewebsites.net/get-product/?jan_code=${janCode}`);
 
       if (response.data && response.data.NAME) {
           setProduct({ ...response.data, PRICE: Number(response.data.PRICE), quantity: 1 });
@@ -70,7 +70,7 @@ export default function Home() {
         console.log("🔍 送信データ:", JSON.stringify(transactionData, null, 2)); // ✅ JSON の中身を確認
 
         try {
-            const response = await axios.post("http://127.0.0.1:8000/transactions/", transactionData, {
+            const response = await axios.post("http://tech0-gen8-step4-pos-app-100.azurewebsites.net/transactions/", transactionData, {
                 headers: { "Content-Type": "application/json" }
             });
 
