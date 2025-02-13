@@ -12,11 +12,6 @@ export default function Home() {
   // ✅ 環境変数からバックエンドのURLを取得
   const backendUrl = (process.env.NEXT_PUBLIC_BACKEND_URL || "https://tech0-gen8-step4-pos-app-100.azurewebsites.net").replace(/\/$/, "");
 
-  // ✅ コンポーネントがマウントされたときに `backendUrl` をログに出力
-  useEffect(() => {
-    console.log("✅ Backend URL:", backendUrl);
-  }, []);
-
   // ✅ 商品を検索する関数
   const fetchProduct = async () => {
     try {
