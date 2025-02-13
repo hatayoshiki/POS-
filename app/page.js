@@ -10,16 +10,24 @@ export default function Home() {
   const [quantity, setQuantity] = useState(1);
 
   // ✅ 環境変数からバックエンドのURLを取得
-  const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL || "https://tech0-gen8-step4-pos-app-100.azurewebsites.net";
+  const backendUrl = (process.env.NEXT_PUBLIC_BACKEND_URL || "https://tech0-gen8-step4-pos-app-100.azurewebsites.net").replace(/\/$/, "");
+
+  // ✅ コンポーネントがマウントされたときに `backendUrl` をログに出力
+  useEffect(() => {
+    console.log("✅ Backend URL:", backendUrl);
+  }, []);
 
   // ✅ 商品を検索する関数
   const fetchProduct = async () => {
     try {
-      const response = await axios.get(`${backendUrl}/get-product/?jan_code=${janCode}`, {
+      const url = `${backendUrl}/get-product/?jan_code=${janCode}`;
+      console.log("🔍 APIリクエスト URL:", url); // ✅ リクエストURLをログに出力
+
+      const response = await axios.get(url, {
         headers: {
           "Content-Type": "application/json",
         },
-        withCredentials: true, // ✅ 認証情報を送信
+        withCredentials: false,  // ✅ Azure の CORS 設定を適用
       });
 
       if (response.data && response.data.name) {
