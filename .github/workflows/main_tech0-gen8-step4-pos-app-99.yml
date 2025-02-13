@@ -18,11 +18,18 @@ jobs:
       - name: Build Next.js project
         run: npm run build
 
+      - name: Verify .next directory exists
+        run: |
+          echo "Checking .next directory..."
+          ls -la .next  # ✅ .next フォルダが正しく作成されているか確認
+
       - name: Upload artifact for deployment
         uses: actions/upload-artifact@v4
         with:
           name: frontend-build
-          path: .next/
+          path: .next
+          if-no-files-found: error  # ✅ `.next/` がない場合にエラーを発生させる
+          retention-days: 1  # 1日間保存
 
   deploy:
     runs-on: ubuntu-latest
