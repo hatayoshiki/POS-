@@ -17,9 +17,12 @@ jobs:
         env: # ビルド時に環境変数を注入
          NEXT_PUBLIC_API_URL: ${{ secrets.NEXT_PUBLIC_API_URL }}
          PORT:  ${{ secrets.PORT }}
-         run: npm install
+        run: npm install
 
       - name: Build Next.js project
+        env:
+         NEXT_PUBLIC_API_URL: ${{ secrets.NEXT_PUBLIC_API_URL }}
+         PORT: ${{ secrets.PORT }}
         run: npm run build
 
       - name: Prepare deploy folder
